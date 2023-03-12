@@ -4,7 +4,30 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
+//
+import { Global, css } from '@emotion/react';
+import emotionNormalize from 'emotion-normalize';
+
+// ...
+
+<Global
+  styles={css`
+    ${emotionNormalize}
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      background: white;
+      min-height: 100%;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  `}
+/>;
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
