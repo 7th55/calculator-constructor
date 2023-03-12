@@ -1,8 +1,10 @@
-# Calculator Constructor 
+# Calculator Constructor
 
 React.js and Redux Calculator Constructor application.
 
 Demo: https://7th55.github.io/calculator-constructor/
+
+![Screenshot of the appllication interface](screenshot.png)
 
 ## Available Scripts
 
@@ -33,7 +35,7 @@ Your app is ready to be deployed!
 
 Build with relative paths:
 
-``` sh
+```sh
 PUBLIC_URL='.' npm run build
 ```
 
