@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 // local
 import { actions } from 'src/store/calculatorSlice';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
@@ -18,6 +18,8 @@ import { StyldeWidgets, StyledWidgetsItem } from './styles';
 // types
 import { WidgetProps } from './types';
 
+import { DraggableWidget } from 'src/components/Constructor/DragAndDrop/Draggable/DraggableWidget/DraggableWidget';
+
 export const Widgets = ({
   showWidgets = ['input', 'operations', 'keyboard', 'equal'],
   mode,
@@ -33,15 +35,25 @@ export const Widgets = ({
   }, [dispatch]);
   const isOverlay: boolean = mode === 'add' || mode === 'remove';
 
+  // React DnD
+
   const overlayClickHandler = (
     widgetName: Widget,
     e: React.MouseEvent<HTMLDivElement>
   ) => {
     e.preventDefault();
     e.stopPropagation();
+    const dblclickRemoveWidget = (widgetName: Widget) => {
+      const widget = document.getElementById(widgetName);
+      widget?.addEventListener('dblclick', () => {
+        dispatch(removeWidget(widgetName));
+      });
+    };
+
     if (mode === 'add') {
       dispatch(addWidget(widgetName));
     } else if (mode === 'remove') {
+      dblclickRemoveWidget(widgetName);
       dispatch(removeWidget(widgetName));
     }
   };
@@ -49,34 +61,36 @@ export const Widgets = ({
   return (
     <StyldeWidgets>
       {showWidgets.map((widgetName) => (
-        <StyledWidgetsItem
-          key={widgetName}
-          overlay={isOverlay}
-          disabled={mode === 'add' && widgets.includes(widgetName)}
-          onClick={
-            isOverlay ? overlayClickHandler.bind(null, widgetName) : undefined
-          }
-        >
-          {widgetName === 'input' ? (
-            <Input
-              withShadows={mode === 'add' && !widgets.includes(widgetName)}
-            />
-          ) : widgetName === 'operations' ? (
-            <Operations
-              withShadows={mode === 'add' && !widgets.includes(widgetName)}
-            />
-          ) : widgetName === 'keyboard' ? (
-            <Keyboard
-              withShadows={mode === 'add' && !widgets.includes(widgetName)}
-            />
-          ) : widgetName === 'equal' ? (
-            <Equal
-              withShadows={mode === 'add' && !widgets.includes(widgetName)}
-            />
-          ) : (
-            proveExhaustiveness(widgetName)
-          )}
-        </StyledWidgetsItem>
+        <DraggableWidget key={widgetName} widgetName={widgetName}>
+          <StyledWidgetsItem
+            id={mode === 'remove' ? `${widgetName}` : ''}
+            overlay={isOverlay}
+            disabled={mode === 'add' && widgets.includes(widgetName)}
+            onClick={
+              isOverlay ? overlayClickHandler.bind(null, widgetName) : undefined
+            }
+          >
+            {widgetName === 'input' ? (
+              <Input
+                withShadows={mode === 'add' && !widgets.includes(widgetName)}
+              />
+            ) : widgetName === 'operations' ? (
+              <Operations
+                withShadows={mode === 'add' && !widgets.includes(widgetName)}
+              />
+            ) : widgetName === 'keyboard' ? (
+              <Keyboard
+                withShadows={mode === 'add' && !widgets.includes(widgetName)}
+              />
+            ) : widgetName === 'equal' ? (
+              <Equal
+                withShadows={mode === 'add' && !widgets.includes(widgetName)}
+              />
+            ) : (
+              proveExhaustiveness(widgetName)
+            )}
+          </StyledWidgetsItem>
+        </DraggableWidget>
       ))}
     </StyldeWidgets>
   );

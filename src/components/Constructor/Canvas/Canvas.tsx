@@ -10,6 +10,7 @@ import {
   StyledCanvasTextSpan,
 } from './styles';
 import { Widgets } from '../Widgets';
+import { DroppableCanvas } from '../DragAndDrop/Droppable/DroppableCanvas/DroppableCanvas';
 
 export const Canvas = ({ mode }: { mode: 'runtime' | 'constructor' }) => {
   const widgets = useAppSelector(selectWidgets);
@@ -20,22 +21,24 @@ export const Canvas = ({ mode }: { mode: 'runtime' | 'constructor' }) => {
         ghostLeft={mode === 'runtime'}
         widgetsEmpty={widgets.length === 0 && mode !== 'runtime'}
       >
-        <StyledCanvasList>
-          {widgets.length === 0 && mode !== 'runtime' ? (
-            <StyledCanvasText>
-              <StyledCanvasTextSpan>Перетащите сюда</StyledCanvasTextSpan>
-              <br />
-              любой элемент
-              <br />
-              из левой панели
-            </StyledCanvasText>
-          ) : (
-            <Widgets
-              showWidgets={widgets}
-              mode={mode === 'runtime' ? 'show' : 'remove'}
-            />
-          )}
-        </StyledCanvasList>
+        <DroppableCanvas>
+          <StyledCanvasList>
+            {widgets.length === 0 && mode !== 'runtime' ? (
+              <StyledCanvasText>
+                <StyledCanvasTextSpan>Перетащите сюда</StyledCanvasTextSpan>
+                <br />
+                любой элемент
+                <br />
+                из левой панели
+              </StyledCanvasText>
+            ) : (
+              <Widgets
+                showWidgets={widgets}
+                mode={mode === 'runtime' ? 'show' : 'remove'}
+              />
+            )}
+          </StyledCanvasList>
+        </DroppableCanvas>
       </StyledCanvas>
     </>
   );

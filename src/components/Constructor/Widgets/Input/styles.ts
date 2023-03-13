@@ -40,7 +40,7 @@ export const StyledInput = styled.div<{ digitsCount: number }>`
 
   background-color: #f3f4f6;
   border-radius: 6px;
-  padding: 0 15px;
+  padding: 4px 15px;
 
   cursor: pointer;
 

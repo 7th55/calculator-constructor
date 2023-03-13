@@ -1,10 +1,14 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-//
+// Store
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+// React DnD
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+// Styles
 import { Global, css } from '@emotion/react';
 import emotionNormalize from 'emotion-normalize';
 
@@ -34,9 +38,11 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <DndProvider backend={HTML5Backend}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </DndProvider>
   </React.StrictMode>
 );
 

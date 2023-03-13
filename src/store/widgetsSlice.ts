@@ -1,3 +1,4 @@
+import { useAppDispatch } from 'src/app/hooks';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'src/app/store';
 export type Widget = 'input' | 'operations' | 'keyboard' | 'equal';
@@ -10,6 +11,7 @@ type WidgetsState = {
 const initialState: WidgetsState = {
   widgetsList: [],
 };
+
 
 export const widgetsSlice = createSlice({
   name: 'widgets',

@@ -12,6 +12,7 @@ export const StyledWidgetsItem = styled.div<{
   disabled: boolean;
 }>`
   position: relative;
+
   ${({ overlay }) =>
     overlay
       ? `

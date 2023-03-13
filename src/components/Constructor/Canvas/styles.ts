@@ -11,9 +11,9 @@ export const StyledCanvas = styled.div<StyledCanvasProps>`
   height: 426px;
 
   margin: 0 0 0 60px;
-  // TODO: rename to showBorder
+
   ${({ widgetsEmpty }) =>
-    widgetsEmpty ? 'outline: 4px dashed #e2e3e5;' : null}
+    widgetsEmpty ? 'outline: 4px dashed #e2e3e5; border-radius: 5px;' : null}
   ${({ ghostLeft }) =>
     ghostLeft
       ? `
