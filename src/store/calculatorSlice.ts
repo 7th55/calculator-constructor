@@ -4,7 +4,20 @@ import { proveExhaustiveness } from 'src/typeUtils';
 
 export type MathOperator = '+' | '-' | '×' | '/';
 
-// A pair of integral and fractional (optional) part of a number.
+// A pair of integral and fractional (optional) part of a number
+//
+// We use this custom type instead of the native JS "number" type, 
+// because user inputs each digit independently and we don't want
+// to accidently get a floating point error while typing.
+//
+// We store the "decimal" part as the list of digits instead of the
+// regular JS "number", because we need an ability to add zeroes
+// at the beginning of a decimal part of a number. In a regular
+// JS "number" (or just in mathematics) the zeroes at the beginning 
+// are disappearing. 
+//
+// When the "decimal" is "null" it means the number is an integer 
+// (has no fractional part). "integral" must never have a fractional part.
 export type FractionalNumber = {
   integral: number;
   decimal: Array<Digit> | null;
