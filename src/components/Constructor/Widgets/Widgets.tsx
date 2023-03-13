@@ -46,7 +46,7 @@ export const Widgets = ({
 
     if (mode === 'add') {
       dispatch(addWidget(widgetName));
-    } else if (mode === 'remove') {
+    } else if (mode === 'remove' && e.detail === 2) {
       dispatch(removeWidget(widgetName));
     }
   };
