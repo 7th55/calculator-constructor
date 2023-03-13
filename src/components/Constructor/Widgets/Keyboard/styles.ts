@@ -29,8 +29,8 @@ export const StyledKeyboardButton = styled.div<{ doubleWidth: boolean }>`
   height: 22%;
 
   margin: 0 5px 0 0;
-  :nth-child(3n + 3),
-  :nth-child(11) {
+  &:nth-of-type(3n + 3),
+  &:nth-of-type(11) {
     margin: 0;
   }
 
