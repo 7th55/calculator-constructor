@@ -46,26 +46,26 @@ type InternalFractionalNumber = {
 //
 // Examples:
 //
-// - "floatToFrac(123)" will return "{ integral: 123, fractional: null }"
-// - "floatToFrac(123.456)" will return "{ integral: 123, fractional: [4, 5, 6] }"
-// - "floatToFrac(-123.456)" will return "{ integral: -123, fractional: [4, 5, 6] }"
-// - "floatToFrac(0.00123)" will return "{ integral: 0, fractional: [0, 0, 1, 2, 3] }"
+// - "floatToFrac(123)" will return "{ integral: 123, decimal: null }"
+// - "floatToFrac(123.456)" will return "{ integral: 123, decimal: [4, 5, 6] }"
+// - "floatToFrac(-123.456)" will return "{ integral: -123, decimal: [4, 5, 6] }"
+// - "floatToFrac(0.00123)" will return "{ integral: 0, decimal: [0, 0, 1, 2, 3] }"
 export const floatToFrac = (num: number): FractionalNumber => {
-  const integral = Math.trunc(num);
-  const decimal = Math.abs(num) - Math.abs(integral);
+  const parts: Array<string> = num.toString().split('.');
 
-  const result: InternalFractionalNumber = {
-    integral,
-    decimal:
-      num === integral
-        ? null
-        : decimal
-            .toString()
-            .replace('0.', '')
-            .split('')
-            .map((x) => parseInt(x, 10))
-            .filter(isDigit),
-  };
+  const result: InternalFractionalNumber =
+    parts.length === 0
+      ? { integral: 0, decimal: null }
+      : {
+          integral: parseInt(parts[0], 10),
+          decimal:
+            parts.length < 2
+              ? null
+              : parts[1]
+                  .split('')
+                  .map((x) => parseInt(x, 10))
+                  .filter(isDigit),
+        };
 
   return result as FractionalNumber;
 };
@@ -74,10 +74,10 @@ export const floatToFrac = (num: number): FractionalNumber => {
 //
 // Examples:
 //
-// - "fracToFloat({ integral: 123, fractional: null })" will return "123"
-// - "fracToFloat({ integral: 123, fractional: [4, 5, 6] })" will return "123.456"
-// - "fracToFloat({ integral: -123, fractional: [4, 5, 6] })" will return "-123.456"
-// - "fracToFloat({ integral: 0, fractional: [0, 0, 1, 2, 3] })" will return "0.00123"
+// - "fracToFloat({ integral: 123, decimal: null })" will return "123"
+// - "fracToFloat({ integral: 123, decimal: [4, 5, 6] })" will return "123.456"
+// - "fracToFloat({ integral: -123, decimal: [4, 5, 6] })" will return "-123.456"
+// - "fracToFloat({ integral: 0, decimal: [0, 0, 1, 2, 3] })" will return "0.00123"
 export const fracToFloat = ({
   integral,
   decimal,
