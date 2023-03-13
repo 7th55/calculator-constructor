@@ -1,7 +1,8 @@
 import React from 'react';
 // local
 import { useAppDispatch } from 'src/app/hooks';
-import { actions, Digit } from 'src/store/calculatorSlice';
+import { actions } from 'src/store/calculatorSlice';
+import { Digit } from 'src/store/types/Digit';
 // styles
 import { StyledKeyboard, StyledKeyboardButton } from './styles';
 // types

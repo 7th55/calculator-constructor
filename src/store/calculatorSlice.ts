@@ -1,29 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { proveExhaustiveness } from 'src/typeUtils';
+import { Digit } from './types/Digit';
+import {
+  addDigitToFrac,
+  addFractionalPart,
+  floatToFrac,
+  FractionalNumber,
+  fracToFloat,
+} from './types/FractionalNumber';
 
 export type MathOperator = '+' | '-' | '×' | '/';
-
-// A pair of integral and fractional (optional) part of a number
-//
-// We use this custom type instead of the native JS "number" type, 
-// because user inputs each digit independently and we don't want
-// to accidently get a floating point error while typing.
-//
-// We store the "decimal" part as the list of digits instead of the
-// regular JS "number", because we need an ability to add zeroes
-// at the beginning of a decimal part of a number. In a regular
-// JS "number" (or just in mathematics) the zeroes at the beginning 
-// are disappearing. 
-//
-// When the "decimal" is "null" it means the number is an integer 
-// (has no fractional part). "integral" must never have a fractional part.
-export type FractionalNumber = {
-  integral: number;
-  decimal: Array<Digit> | null;
-};
-
-export type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 // Stack-like calculator expression.
 export type CalculatorStack =
@@ -53,54 +40,6 @@ const mathOperatorToFunction = (
       return proveExhaustiveness(operator);
   }
 };
-
-// Convert FractionalNumber to regular JS number.
-const fracToFloat = ({ integral, decimal }: FractionalNumber): number => {
-  const decimalNumber: number =
-    decimal === null ? 0 : parseFloat(`0.${decimal.join('')}`);
-
-  return integral < 0 ? integral - decimalNumber : integral + decimalNumber;
-};
-
-//
-const isDigit = (num: number): num is Digit => num >= 0 && num <= 9;
-
-//
-const floatToFrac = (num: number): FractionalNumber => {
-  const integral = Math.trunc(num);
-  const decimal = Math.abs(num) - Math.abs(integral);
-  return {
-    integral,
-    decimal:
-      num === integral
-        ? null
-        : decimal
-            .toString()
-            .replace('0.', '')
-            .split('')
-            .map((x) => parseInt(x, 10))
-            .filter(isDigit),
-  };
-};
-
-//
-const addDigit = (x: number, digit: Digit): number => x * 10 + digit;
-
-//
-const addDigitToFrac = (
-  { integral, decimal }: FractionalNumber,
-  digit: Digit
-): FractionalNumber =>
-  decimal === null
-    ? { integral: addDigit(integral, digit), decimal }
-    : { integral, decimal: decimal.concat(digit) };
-
-//
-const addFractionalPart = ({
-  integral,
-  decimal,
-}: FractionalNumber): FractionalNumber =>
-  decimal === null ? { integral, decimal: [] } : { integral, decimal };
 
 //
 const evalStack = (stack: CalculatorStack): number =>
@@ -143,10 +82,7 @@ export const calculatorSlice = createSlice({
                 tag: 'regular',
                 stack: {
                   tag: 'end',
-                  number: {
-                    integral: 0,
-                    decimal: [],
-                  },
+                  number: addFractionalPart(floatToFrac(0)),
                 },
               }
             : state.expression.tag === 'partial'
@@ -156,10 +92,7 @@ export const calculatorSlice = createSlice({
                   tag: 'top',
                   tail: state.expression.stack,
                   operator: state.expression.operator,
-                  number: {
-                    integral: 0,
-                    decimal: [],
-                  },
+                  number: addFractionalPart(floatToFrac(0)),
                 },
               }
             : proveExhaustiveness(state.expression);
