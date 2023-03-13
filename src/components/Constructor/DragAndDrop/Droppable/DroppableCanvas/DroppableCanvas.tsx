@@ -2,7 +2,7 @@ import React from 'react';
 import { useDrop } from 'react-dnd';
 
 export const DroppableCanvas = ({ children }: { children: JSX.Element }) => {
-  const [{ canDrop, isOver }, drop] = useDrop(() => ({
+  const [{ isOver }, drop] = useDrop(() => ({
     // The type (or types) to accept - strings or symbols
     accept: 'WIDGET',
     // Props to collect

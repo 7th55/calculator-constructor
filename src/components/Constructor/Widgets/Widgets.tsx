@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 // local
 import { actions } from 'src/store/calculatorSlice';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
