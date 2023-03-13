@@ -4,7 +4,6 @@ export type Widget = 'input' | 'operations' | 'keyboard' | 'equal';
 export type Widgets = Array<Widget>;
 
 type WidgetsState = {
-  // TODO: rename to widgetsList
   widgetsList: Widgets;
 };
 const initialState: WidgetsState = {

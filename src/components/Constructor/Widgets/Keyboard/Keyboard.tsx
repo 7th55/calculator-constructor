@@ -16,7 +16,6 @@ export const Keyboard = ({ withShadows = false }: WidgetsComponentProps) => {
     <StyledKeyboard withShadows={withShadows}>
       {numbers.map((num) => (
         <StyledKeyboardButton
-          // TODO: Add prop doubleWidth
           key={num}
           doubleWidth={num === 0}
           onClick={() => {

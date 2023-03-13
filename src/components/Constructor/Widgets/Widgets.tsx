@@ -43,17 +43,10 @@ export const Widgets = ({
   ) => {
     e.preventDefault();
     e.stopPropagation();
-    const dblclickRemoveWidget = (widgetName: Widget) => {
-      const widget = document.getElementById(widgetName);
-      widget?.addEventListener('dblclick', () => {
-        dispatch(removeWidget(widgetName));
-      });
-    };
 
     if (mode === 'add') {
       dispatch(addWidget(widgetName));
     } else if (mode === 'remove') {
-      dblclickRemoveWidget(widgetName);
       dispatch(removeWidget(widgetName));
     }
   };
