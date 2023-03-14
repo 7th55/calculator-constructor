@@ -19,6 +19,7 @@ export const Keyboard = ({ withShadows = false }: WidgetsComponentProps) => {
         <StyledKeyboardButton
           key={num}
           doubleWidth={num === 0}
+          withShadows={withShadows}
           onClick={() => {
             dispatch(
               num === ','

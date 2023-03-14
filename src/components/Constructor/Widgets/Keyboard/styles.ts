@@ -16,16 +16,23 @@ export const StyledKeyboard = styled.div<StyledWidgetsComponentProps>`
 
   cursor: pointer;
 
-  ${({ withShadows }) => (withShadows ? null : 'box-shadow: none;')}
+  ${({ withShadows }) =>
+    withShadows
+      ? null
+      : 'box-shadow: none; background-color: rgba(255, 255, 255, 0)'}
 `;
 
-export const StyledKeyboardButton = styled.div<{ doubleWidth: boolean }>`
+export const StyledKeyboardButton = styled.div<{
+  doubleWidth: boolean;
+  withShadows: boolean;
+}>`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
 
   ${({ doubleWidth }) => (doubleWidth ? 'width: 64%;' : 'width: 31%;')}
+  ${({ withShadows }) => (withShadows ? null : 'background-color: #ffffff;')}
   height: 22%;
 
   margin: 0 5px 0 0;

@@ -19,6 +19,7 @@ export const DroppableCanvas = ({ children }: { children: JSX.Element }) => {
         backgroundColor: isOver ? '#F0F9FF' : 'white',
         width: '100%',
         height: '100%',
+        borderRadius: '5px',
       }}
     >
       {children}

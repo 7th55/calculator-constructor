@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const StyldeWidgets = styled.div`
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
   width: 244px;
   height: 426px;
 `;

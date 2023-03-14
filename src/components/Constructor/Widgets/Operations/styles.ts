@@ -14,7 +14,7 @@ export const StyledOperations = styled.div<StyledWidgetsComponentProps>`
 
   cursor: pointer;
 
-  ${({ withShadows }) => (withShadows ? null : 'box-shadow: none;')}
+  ${({ withShadows }) => (withShadows ? null : 'box-shadow: none; background-color: rgba(255, 255, 255, 0)')}
 `;
 
 type StyledOperationsButtonProps = {
