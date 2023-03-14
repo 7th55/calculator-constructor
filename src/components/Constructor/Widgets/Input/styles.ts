@@ -14,7 +14,7 @@ export const StyledInputWrapper = styled.div<StyledWidgetsComponentProps>`
   margin: 0 0 5px 0;
 
   cursor: pointer;
-
+  // TODO: Rename this
   ${({ withShadows }) =>
     withShadows
       ? null

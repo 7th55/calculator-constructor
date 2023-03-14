@@ -10,6 +10,7 @@ import {
   fracToFloat,
 } from './types/FractionalNumber';
 
+// TODO: Move the type and all relative stuff to a separate module
 export type MathOperator = '+' | '-' | '×' | '/';
 
 // Stack-like calculator expression.
