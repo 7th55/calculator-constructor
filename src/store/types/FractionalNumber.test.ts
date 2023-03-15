@@ -78,12 +78,16 @@ describe('Conversion between "number" and "FractionalNumber"', () => {
         (num: number) => fracToFloat(floatToFrac(num)) === num
       )
     );
-    // FIXME: This requires support for complex numbers like "-1.401298464324817e-45"
-    // fc.assert(
-    //   fc.property(
-    //     fc.float(),
-    //     (num: number) => fracToFloat(floatToFrac(num)) === num
-    //   )
-    // );
+    fc.assert(
+      fc.property(
+        fc.double({
+          max: Number.MAX_SAFE_INTEGER,
+          min: Number.MAX_SAFE_INTEGER,
+          noDefaultInfinity: true,
+          noNaN: true,
+        }),
+        (num: number) => fracToFloat(floatToFrac(num)) === num
+      )
+    );
   });
-}); //
+});
