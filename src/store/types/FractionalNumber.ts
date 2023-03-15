@@ -66,7 +66,7 @@ export const floatToFrac = (num: number): FractionalNumber => {
                   .map((x) => parseInt(x, 10))
                   .filter(isDigit),
         };
-
+        
   return result as FractionalNumber;
 };
 
@@ -97,20 +97,20 @@ export const fracToFloat = ({
 //
 // Examples:
 //
-// - "addDigitToFrac({ integral: 123, fractional: null }, 7)"
-//   will return "{ integral: 1237, fractional: null }"
-// - "addDigitToFrac({ integral: 0, fractional: [] }, 7)"
-//   will return "{ integral: 0, fractional: [7] }"
-// - "addDigitToFrac({ integral: 0, fractional: [0] }, 0)"
-//   will return "{ integral: 0, fractional: [0, 0] }"
-// - "addDigitToFrac({ integral: 0, fractional: [0] }, 1)"
-//   will return "{ integral: 0, fractional: [0, 1] }"
-// - "addDigitToFrac({ integral: 123, fractional: [4, 5, 6] }, 7)"
-//   will return "{ integral: 123, fractional: [4, 5, 6, 7] }"
-// - "addDigitToFrac({ integral: -123, fractional: [4, 5, 6] }, 7)"
-//   will return "{ integral: -123, fractional: [4, 5, 6, 7] }"
-// - "addDigitToFrac({ integral: 0, fractional: [0, 0, 1, 2, 3] }, 7)"
-//   will return "{ integral: 0, fractional: [0, 0, 1, 2, 3, 7] }"
+// - "addDigitToFrac({ integral: 123, decimal: null }, 7)"
+//   will return "{ integral: 1237, decimal: null }"
+// - "addDigitToFrac({ integral: 0, decimal: [] }, 7)"
+//   will return "{ integral: 0, decimal: [7] }"
+// - "addDigitToFrac({ integral: 0, decimal: [0] }, 0)"
+//   will return "{ integral: 0, decimal: [0, 0] }"
+// - "addDigitToFrac({ integral: 0, decimal: [0] }, 1)"
+//   will return "{ integral: 0, decimal: [0, 1] }"
+// - "addDigitToFrac({ integral: 123, decimal: [4, 5, 6] }, 7)"
+//   will return "{ integral: 123, decimal: [4, 5, 6, 7] }"
+// - "addDigitToFrac({ integral: -123, decimal: [4, 5, 6] }, 7)"
+//   will return "{ integral: -123, decimal: [4, 5, 6, 7] }"
+// - "addDigitToFrac({ integral: 0, decimal: [0, 0, 1, 2, 3] }, 7)"
+//   will return "{ integral: 0, decimal: [0, 0, 1, 2, 3, 7] }"
 export const addDigitToFrac = (
   { integral, decimal }: FractionalNumber,
   digit: Digit
@@ -135,12 +135,12 @@ export const addDigitToFrac = (
 //
 // Examples:
 //
-// - "addFractionalPart({ integral: 123, fractional: null })"
-//   will return "{ integral: 123, fractional: [] }"
-// - "addFractionalPart({ integral: 123, fractional: [] })"
-//   will return "{ integral: 123, fractional: [] }" (nothing changed)
-// - "addFractionalPart({ integral: 123, fractional: [4, 5, 6] })"
-//   will return "{ integral: 123, fractional: [4, 5, 6] }" (nothing changed)
+// - "addFractionalPart({ integral: 123, decimal: null })"
+//   will return "{ integral: 123, decimal: [] }"
+// - "addFractionalPart({ integral: 123, decimal: [] })"
+//   will return "{ integral: 123, decimal: [] }" (nothing changed)
+// - "addFractionalPart({ integral: 123, decimal: [4, 5, 6] })"
+//   will return "{ integral: 123, decimal: [4, 5, 6] }" (nothing changed)
 export const addFractionalPart = (num: FractionalNumber): FractionalNumber => {
   if (num.decimal !== null) return num; // Idempotence
 
