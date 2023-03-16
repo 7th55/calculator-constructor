@@ -5,7 +5,7 @@ export const StyldeWidgets = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   width: 244px;
-  height: 426px;
+  height: 100%;
 `;
 
 export const StyledWidgetsItem = styled.div<{

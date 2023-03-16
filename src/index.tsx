@@ -6,11 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 // React DnD
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd-multi-backend';
 // Styles
 import { Global, css } from '@emotion/react';
 import emotionNormalize from 'emotion-normalize';
+import { HTML5toTouch } from 'rdndmb-html5-to-touch';
 
 // ...
 
@@ -38,7 +38,7 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider options={HTML5toTouch}>
       <Provider store={store}>
         <App />
       </Provider>

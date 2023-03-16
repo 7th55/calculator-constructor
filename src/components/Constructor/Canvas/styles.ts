@@ -8,7 +8,7 @@ export const StyledCanvas = styled.div<StyledCanvasProps>`
   align-items: flex-start;
   justify-content: center;
   width: 244px;
-  height: 426px;
+  height: 100%; 
 
   margin: 0 0 0 55px;
 

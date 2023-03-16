@@ -12,7 +12,7 @@ export const StyledConstructor = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 export const StyledConstructorWidgetsAndCanvas = styled.div`
   display: flex;
@@ -34,7 +34,6 @@ export const StyledConstructorSwitcher = styled.div`
   border-radius: 5px;
   padding: 1px;
 `;
-
 
 export const StyledModeSwitchButton = styled.button<{
   isActive: boolean;
