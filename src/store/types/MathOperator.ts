@@ -1,19 +1,16 @@
-import { proveExhaustiveness } from '@/typeUtils';
+import { proveExhaustiveness } from 'src/typeUtils';
 
-// Availabel operators.
+// Available operators.
 //
 // These strings used converted to mathematical operations.
 export type MathOperator = '+' | '-' | '×' | '/';
 
 // The funciton will be returned by converting the "MathOperator" to
-// mathematical operations.                                        
+// mathematical operations.
 export type MathOperatorFunction = (a: number, b: number) => number;
 
-// Function receives the "MathOperator" as argument 
-// and returns the "MathOperatorFunction". 
-//
-// Examples: "mathOperatorToFunction('×')" will returned 
-// the arrow function "(a, b) => a * b;".
+// Function receives an abstract "string" as argument
+// and returns a mathematical operation.
 export const mathOperatorToFunction = (
   operator: MathOperator
 ): MathOperatorFunction => {
@@ -30,5 +27,3 @@ export const mathOperatorToFunction = (
       return proveExhaustiveness(operator);
   }
 };
-
-

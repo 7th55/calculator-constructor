@@ -17,7 +17,7 @@ export const StyledCanvas = styled.div<StyledCanvasProps>`
   ${({ ghostLeft }) =>
     ghostLeft
       ? `
-      margin-left: calc(244px + 60px);
+      margin-left: calc(244px + 55px);
    
       `
       : null}
