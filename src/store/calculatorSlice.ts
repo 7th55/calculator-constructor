@@ -9,9 +9,7 @@ import {
   FractionalNumber,
   fracToFloat,
 } from './types/FractionalNumber';
-
-// TODO: Move the type and all relative stuff to a separate module
-export type MathOperator = '+' | '-' | '×' | '/';
+import { MathOperator, mathOperatorToFunction } from './types/MathOperator';
 
 // Stack-like calculator expression.
 export type CalculatorStack =
@@ -22,25 +20,6 @@ export type CalculatorStack =
       operator: MathOperator;
       number: FractionalNumber;
     };
-
-export type MathOperatorFunction = (a: number, b: number) => number;
-
-const mathOperatorToFunction = (
-  operator: MathOperator
-): MathOperatorFunction => {
-  switch (operator) {
-    case '+':
-      return (a, b) => a + b;
-    case '-':
-      return (a, b) => a - b;
-    case '×':
-      return (a, b) => a * b;
-    case '/':
-      return (a, b) => a / b;
-    default:
-      return proveExhaustiveness(operator);
-  }
-};
 
 //
 const evalStack = (stack: CalculatorStack): number =>
