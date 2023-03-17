@@ -1,6 +1,6 @@
-import React, { CSSProperties, FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useAppDispatch } from 'src/app/hooks';
-import { addWidget, Widget } from 'src/store/widgetsSlice';
+import { addWidget } from 'src/store/widgetsSlice';
 import { useDrag } from 'react-dnd';
 import { DraggableWidgetProps } from './types';
 import { getEmptyImage } from 'react-dnd-html5-backend';

@@ -1,8 +1,6 @@
 import { Widget } from '@/store/widgetsSlice';
-import { proveExhaustiveness } from '@/typeUtils';
 import { CSSProperties, FC } from 'react';
 import { useDragLayer, XYCoord } from 'react-dnd';
-import { Widgets } from '../Widgets';
 import { Equal } from '../Widgets/Equal';
 import { Input } from '../Widgets/Input';
 import { Keyboard } from '../Widgets/Keyboard';
