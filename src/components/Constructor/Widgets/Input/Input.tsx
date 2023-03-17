@@ -10,7 +10,10 @@ import { StyledInput, StyledInputWrapper } from './styles';
 // types
 import { WidgetsComponentProps } from 'src/components/Constructor/Widgets/types';
 
-export const Input = ({ withShadows = false }: WidgetsComponentProps) => {
+export const Input = ({
+  withShadows = false,
+  withBackgroundColor = false,
+}: WidgetsComponentProps) => {
   const expression = useAppSelector(selectExpression);
   const hasGhostFraction = useAppSelector(selectHasGhostFraction);
 
@@ -20,7 +23,10 @@ export const Input = ({ withShadows = false }: WidgetsComponentProps) => {
       : expression.toString().replace('.', ',') + (hasGhostFraction ? ',' : '');
 
   return (
-    <StyledInputWrapper withShadows={withShadows}>
+    <StyledInputWrapper
+      withShadows={withShadows}
+      withBackgroundColor={withBackgroundColor}
+    >
       <StyledInput digitsCount={value.replace(',', '').length}>
         {value}
       </StyledInput>

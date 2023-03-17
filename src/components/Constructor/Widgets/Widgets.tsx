@@ -19,6 +19,7 @@ import { StyldeWidgets, StyledWidgetsItem } from './styles';
 import { WidgetProps } from './types';
 
 import { DraggableWidget } from 'src/components/Constructor/DragAndDrop/Draggable/DraggableWidget/DraggableWidget';
+import { CustomDragLayer } from '../DragAndDrop/CustomDragLayer';
 
 export const Widgets = ({
   showWidgets = ['input', 'operations', 'keyboard', 'equal'],
@@ -34,8 +35,6 @@ export const Widgets = ({
     };
   }, [dispatch]);
   const isOverlay: boolean = mode === 'add' || mode === 'remove';
-
-  // React DnD
 
   const overlayClickHandler = (
     widgetName: Widget,
@@ -54,36 +53,75 @@ export const Widgets = ({
   return (
     <StyldeWidgets>
       {showWidgets.map((widgetName) => (
-        <DraggableWidget key={widgetName} widgetName={widgetName}>
-          <StyledWidgetsItem
-            id={mode === 'remove' ? `${widgetName}` : ''}
-            overlay={isOverlay}
-            disabled={mode === 'add' && widgets.includes(widgetName)}
-            onClick={
-              isOverlay ? overlayClickHandler.bind(null, widgetName) : undefined
-            }
-          >
-            {widgetName === 'input' ? (
-              <Input
-                withShadows={mode === 'add' && !widgets.includes(widgetName)}
-              />
-            ) : widgetName === 'operations' ? (
-              <Operations
-                withShadows={mode === 'add' && !widgets.includes(widgetName)}
-              />
-            ) : widgetName === 'keyboard' ? (
-              <Keyboard
-                withShadows={mode === 'add' && !widgets.includes(widgetName)}
-              />
-            ) : widgetName === 'equal' ? (
-              <Equal
-                withShadows={mode === 'add' && !widgets.includes(widgetName)}
-              />
-            ) : (
-              proveExhaustiveness(widgetName)
-            )}
-          </StyledWidgetsItem>
-        </DraggableWidget>
+        <React.Fragment key={widgetName}>
+          <CustomDragLayer snapToGrid={false} widgetName={widgetName}>
+            <StyledWidgetsItem
+              id={mode === 'remove' ? `${widgetName}` : ''}
+              overlay={isOverlay}
+              disabled={mode === 'add' && widgets.includes(widgetName)}
+              onClick={
+                isOverlay
+                  ? overlayClickHandler.bind(null, widgetName)
+                  : undefined
+              }
+            >
+              {widgetName === 'input' ? (
+                <Input
+                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
+                  withBackgroundColor={
+                    mode === 'add' && !widgets.includes(widgetName)
+                  }
+                />
+              ) : widgetName === 'operations' ? (
+                <Operations
+                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
+                />
+              ) : widgetName === 'keyboard' ? (
+                <Keyboard
+                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
+                />
+              ) : widgetName === 'equal' ? (
+                <Equal
+                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
+                />
+              ) : (
+                proveExhaustiveness(widgetName)
+              )}
+            </StyledWidgetsItem>
+          </CustomDragLayer>
+          <DraggableWidget widgetName={widgetName}>
+            <StyledWidgetsItem
+              id={mode === 'remove' ? `${widgetName}` : ''}
+              overlay={isOverlay}
+              disabled={mode === 'add' && widgets.includes(widgetName)}
+              onClick={
+                isOverlay
+                  ? overlayClickHandler.bind(null, widgetName)
+                  : undefined
+              }
+            >
+              {widgetName === 'input' ? (
+                <Input
+                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
+                />
+              ) : widgetName === 'operations' ? (
+                <Operations
+                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
+                />
+              ) : widgetName === 'keyboard' ? (
+                <Keyboard
+                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
+                />
+              ) : widgetName === 'equal' ? (
+                <Equal
+                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
+                />
+              ) : (
+                proveExhaustiveness(widgetName)
+              )}
+            </StyledWidgetsItem>
+          </DraggableWidget>
+        </React.Fragment>
       ))}
     </StyldeWidgets>
   );

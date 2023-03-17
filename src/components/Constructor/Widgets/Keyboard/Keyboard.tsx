@@ -8,13 +8,19 @@ import { StyledKeyboard, StyledKeyboardButton } from './styles';
 // types
 import { WidgetsComponentProps } from 'src/components/Constructor/Widgets/types';
 
-export const Keyboard = ({ withShadows = false }: WidgetsComponentProps) => {
+export const Keyboard = ({
+  withShadows = false,
+  withBackgroundColor = false,
+}: WidgetsComponentProps) => {
   const dispatch = useAppDispatch();
 
   const numbers: Array<Digit | ','> = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0, ','];
 
   return (
-    <StyledKeyboard withShadows={withShadows}>
+    <StyledKeyboard
+      withShadows={withShadows}
+      withBackgroundColor={withBackgroundColor}
+    >
       {numbers.map((num) => (
         <StyledKeyboardButton
           key={num}

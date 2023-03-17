@@ -7,10 +7,16 @@ import { StyledEqual, StyledEqualWrapper } from './styles';
 // types
 import { WidgetsComponentProps } from 'src/components/Constructor/Widgets/types';
 
-export const Equal = ({ withShadows = false }: WidgetsComponentProps) => {
+export const Equal = ({
+  withShadows = false,
+  withBackgroundColor = false,
+}: WidgetsComponentProps) => {
   const dispatch = useAppDispatch();
   return (
-    <StyledEqualWrapper withShadows={withShadows}>
+    <StyledEqualWrapper
+      withShadows={withShadows}
+      withBackgroundColor={withBackgroundColor}
+    >
       <StyledEqual
         onClick={() => {
           dispatch(actions.calcStack());

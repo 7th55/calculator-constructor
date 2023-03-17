@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { CSSProperties, FC, useEffect } from 'react';
 import { useAppDispatch } from 'src/app/hooks';
 import { addWidget, Widget } from 'src/store/widgetsSlice';
 import { useDrag } from 'react-dnd';
+import { DraggableWidgetProps } from './types';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 
-export const DraggableWidget = ({
+export const DraggableWidget: FC<DraggableWidgetProps> = ({
   children,
   widgetName,
-}: {
-  children: JSX.Element;
-  widgetName: Widget;
 }) => {
   const dispatch = useAppDispatch();
 
-  const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
-    type: 'WIDGET',
+  const [{ isDragging }, drag, preview] = useDrag(() => ({
+    type: widgetName,
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -25,9 +24,9 @@ export const DraggableWidget = ({
     },
   }));
 
-  return isDragging ? (
-    <div ref={dragPreview}>{children}</div>
-  ) : (
-    <div ref={drag}>{children}</div>
-  );
+  useEffect(() => {
+    preview(getEmptyImage(), { captureDraggingState: true });
+  }, []);
+
+  return <div ref={drag}>{children}</div>;
 };

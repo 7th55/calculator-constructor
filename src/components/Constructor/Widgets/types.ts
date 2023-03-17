@@ -7,8 +7,10 @@ export type WidgetProps = {
 
 export type WidgetsComponentProps = {
   withShadows?: boolean;
+  withBackgroundColor?: boolean;
 };
 
 export type StyledWidgetsComponentProps = {
   withShadows: boolean;
+  withBackgroundColor?: boolean;
 };

@@ -13,10 +13,9 @@ export const StyledEqualWrapper = styled.div<StyledWidgetsComponentProps>`
 
   margin: 0 0 5px 0;
 
-  ${({ withShadows }) =>
-    withShadows
-      ? null
-      : 'box-shadow: none; background-color: rgba(255, 255, 255, 0)'}
+  ${({ withShadows }) => (withShadows ? null : 'box-shadow: none; ')}
+  ${({ withBackgroundColor }) =>
+    withBackgroundColor ? null : 'background-color: rgba(255, 255, 255, 0)'}
 `;
 
 export const StyledEqual = styled.div`

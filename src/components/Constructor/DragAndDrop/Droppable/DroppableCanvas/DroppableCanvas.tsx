@@ -3,9 +3,7 @@ import { useDrop } from 'react-dnd';
 
 export const DroppableCanvas = ({ children }: { children: JSX.Element }) => {
   const [{ isOver }, drop] = useDrop(() => ({
-    // The type (or types) to accept - strings or symbols
-    accept: 'WIDGET',
-    // Props to collect
+    accept: ['input', 'operations', 'keyboard', 'equal'],
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
