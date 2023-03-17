@@ -11,10 +11,10 @@ export const StyledInputWrapper = styled.div<StyledWidgetsComponentProps>`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 
-  margin: 0 0 5px 0;
+  margin: 5px 0 5px 0;
 
   cursor: pointer;
-  
+
   ${({ withShadows }) => (withShadows ? null : 'box-shadow: none; ')}
   ${({ withBackgroundColor }) =>
     withBackgroundColor ? null : 'background-color: rgba(255, 255, 255, 0)'}
