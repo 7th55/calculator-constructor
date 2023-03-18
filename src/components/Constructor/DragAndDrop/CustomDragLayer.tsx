@@ -47,11 +47,9 @@ function getItemStyles(
 
 export interface CustomDragLayerProps {
   snapToGrid: boolean;
-  children: JSX.Element;
   widgetName: Widget;
 }
 export const CustomDragLayer: FC<CustomDragLayerProps> = ({
-  children,
   widgetName,
   snapToGrid,
 }) => {

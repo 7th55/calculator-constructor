@@ -54,41 +54,7 @@ export const Widgets = ({
     <StyldeWidgets>
       {showWidgets.map((widgetName) => (
         <React.Fragment key={widgetName}>
-          <CustomDragLayer snapToGrid={false} widgetName={widgetName}>
-            <StyledWidgetsItem
-              id={mode === 'remove' ? `${widgetName}` : ''}
-              overlay={isOverlay}
-              disabled={mode === 'add' && widgets.includes(widgetName)}
-              onClick={
-                isOverlay
-                  ? overlayClickHandler.bind(null, widgetName)
-                  : undefined
-              }
-            >
-              {widgetName === 'input' ? (
-                <Input
-                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
-                  withBackgroundColor={
-                    mode === 'add' && !widgets.includes(widgetName)
-                  }
-                />
-              ) : widgetName === 'operations' ? (
-                <Operations
-                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
-                />
-              ) : widgetName === 'keyboard' ? (
-                <Keyboard
-                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
-                />
-              ) : widgetName === 'equal' ? (
-                <Equal
-                  withShadows={mode === 'add' && !widgets.includes(widgetName)}
-                />
-              ) : (
-                proveExhaustiveness(widgetName)
-              )}
-            </StyledWidgetsItem>
-          </CustomDragLayer>
+          <CustomDragLayer snapToGrid={false} widgetName={widgetName} />
           <DraggableWidget widgetName={widgetName}>
             <StyledWidgetsItem
               id={mode === 'remove' ? `${widgetName}` : ''}
