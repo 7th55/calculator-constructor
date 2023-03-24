@@ -2,7 +2,6 @@ import React from 'react';
 import { useDrop } from 'react-dnd';
 import { useAppSelector } from 'src/app/hooks';
 import { selectWidgets } from 'src/store/widgetsSlice';
-import dndLineImg from 'src/img/dnd-line.svg';
 
 export const DroppableCanvas = ({ children }: { children: JSX.Element }) => {
   const [{ isOver }, drop] = useDrop(() => ({
@@ -27,19 +26,6 @@ export const DroppableCanvas = ({ children }: { children: JSX.Element }) => {
       }}
     >
       {children}
-      {isOver && widgets.length ? (
-        <span
-          style={{
-            display: 'block',
-            position: 'absolute',
-            width: '100%',
-            height: '6px',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: '100%',
-            backgroundImage: `url(${dndLineImg})`,
-          }}
-        ></span>
-      ) : null}
     </div>
   );
 };

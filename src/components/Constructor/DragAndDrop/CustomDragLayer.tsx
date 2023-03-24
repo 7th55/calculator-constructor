@@ -45,14 +45,11 @@ function getItemStyles(
   };
 }
 
-export interface CustomDragLayerProps {
+export type CustomDragLayerProps = {
   snapToGrid: boolean;
   widgetName: Widget;
-}
-export const CustomDragLayer: FC<CustomDragLayerProps> = ({
-  widgetName,
-  snapToGrid,
-}) => {
+};
+export const CustomDragLayer: FC<CustomDragLayerProps> = ({ snapToGrid }) => {
   const { itemType, isDragging, item, initialOffset, currentOffset } =
     useDragLayer((monitor) => ({
       item: monitor.getItem(),

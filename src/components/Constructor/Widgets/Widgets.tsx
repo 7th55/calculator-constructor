@@ -52,12 +52,15 @@ export const Widgets = ({
 
   return (
     <StyldeWidgets>
-      {showWidgets.map((widgetName) => (
+      {showWidgets.map((widgetName, index) => (
         <React.Fragment key={widgetName}>
           <CustomDragLayer snapToGrid={false} widgetName={widgetName} />
-          <DraggableWidget widgetName={widgetName}>
+          <DraggableWidget
+            mode={mode}
+            widgetName={widgetName}
+            widgetIndex={index}
+          >
             <StyledWidgetsItem
-              id={mode === 'remove' ? `${widgetName}` : ''}
               overlay={isOverlay}
               disabled={mode === 'add' && widgets.includes(widgetName)}
               onClick={
@@ -82,9 +85,8 @@ export const Widgets = ({
                 <Equal
                   withShadows={mode === 'add' && !widgets.includes(widgetName)}
                 />
-              ) : (
-                proveExhaustiveness(widgetName)
-              )}
+              ) : // proveExhaustiveness(widgetName)
+              null}
             </StyledWidgetsItem>
           </DraggableWidget>
         </React.Fragment>
