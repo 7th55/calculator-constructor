@@ -33,6 +33,7 @@ export const Canvas = ({ mode }: { mode: 'runtime' | 'constructor' }) => {
               </StyledCanvasText>
             ) : (
               <Widgets
+                key={mode}
                 showWidgets={widgets}
                 mode={mode === 'runtime' ? 'show' : 'remove'}
               />
