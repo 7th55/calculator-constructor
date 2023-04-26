@@ -38,7 +38,12 @@ export const Constructor = () => {
           </StyledConstructorSwitcherWrapper>
 
           <StyledConstructorWidgetsAndCanvas>
-            {mode === 'constructor' ? <Widgets mode="add" /> : null}
+            {mode === 'constructor' ? (
+              <Widgets
+                key={mode}
+                mode="add"
+              />
+            ) : null}
             <Canvas mode={mode} />
           </StyledConstructorWidgetsAndCanvas>
         </>

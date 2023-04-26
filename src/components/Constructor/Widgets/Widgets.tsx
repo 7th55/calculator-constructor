@@ -8,7 +8,7 @@ import {
   selectWidgets,
   Widget,
 } from 'src/store/widgetsSlice';
-import { proveExhaustiveness } from 'src/typeUtils';
+// import { proveExhaustiveness } from 'src/typeUtils';
 import { Equal } from './Equal';
 import { Input } from './Input';
 import { Keyboard } from './Keyboard';
@@ -26,7 +26,7 @@ export const Widgets = ({
   mode,
 }: WidgetProps) => {
   const widgets = useAppSelector(selectWidgets);
-
+  console.log(showWidgets, widgets, 'S/W');
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(actions.resetExpression());
@@ -56,9 +56,10 @@ export const Widgets = ({
         <React.Fragment key={widgetName}>
           <CustomDragLayer snapToGrid={false} widgetName={widgetName} />
           <DraggableWidget
+            key={index}
             mode={mode}
             widgetName={widgetName}
-            widgetIndex={index}
+            widgetIndex={mode === 'add' ? -1 : index}
           >
             <StyledWidgetsItem
               overlay={isOverlay}

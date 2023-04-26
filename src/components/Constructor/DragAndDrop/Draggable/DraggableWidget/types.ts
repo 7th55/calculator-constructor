@@ -9,10 +9,7 @@ export type DraggableWidgetProps = {
 
 export type DropLineProps = {
   children: JSX.Element;
-  isOver: boolean;
-  widgetsLength: number;
-  dragItemWidgetName: string | null;
-  dragItemWidgetIndex: number | null;
-  widgetName: string;
-  widgetIndex: number;
+  mode: boolean;
+  index: number;
+  dropIndex: number | null;
 };
